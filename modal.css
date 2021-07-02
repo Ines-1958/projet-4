@@ -20,6 +20,10 @@ body {
   max-width: 1300px;
   margin: 0 auto;
 }
+.topnav .header-logo img { 
+  width: auto;
+  height: auto;
+}
 
 p {
   margin-bottom: 0;
