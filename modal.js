@@ -32,32 +32,53 @@ function closeModal(){
 // vérification formulaire
 const modalSubmitButton = document.querySelector("#modalSubmit");
 modalSubmitButton.addEventListener("click", function(){
-  const prenom = document.querySelector("#first")
-  const nom = document.querySelector("#last")
-  const newyork = document.querySelector("#location1")
+  console.log("Début")
+  const prenomSelector = document.querySelector("#first")
+  const nomSelector = document.querySelector("#last")
+  /*const newyork = document.querySelector("#location1")
   const sanfrancisco = document.querySelector("#location2")
   const seattle = document.querySelector("#location3")
   const chicago = document.querySelector("#location4")
   const boston = document.querySelector("#location5")
   const portland = document.querySelector("#location6")
-  const conditions = document.getElementsByName("conditions")
+  const conditions = document.getElementsByName("conditions")*/
+  const locationSelector = document.querySelector("input[name='location']");
+  const location = document.querySelector("input[name='location']:checked");
+  const conditions = document.querySelector("input[name='conditions']");
+  const nombreTournois = document.querySelector("input[name='quantity']").value;
+
+  const emailRegex = /^(([^<>()\[\]\.,;:\s@"]+(\.[^<>()\[\]\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  const email = document.querySelector("input[name='email']").value;
+  
+  console.log("Remise à zéro des erreurs")
+   document.getElementById('erreurPrenom').innerHTML = ""
 
   let errors = []
 
-  if(prenom.value.length <= 2)
+  console.log("Vérification des erreurs")
+  if(prenomSelector.value.length < 2)
   {
     errors.push("prenom")
   }
-  if(nom.value.length <=2)
+  if(nomSelector.value.length < 2)
   {
     errors.push("nom")
   }
-  if(!newyork.checked && !sanfrancisco.checked && !seattle.checked && !chicago.checked && !boston.checked && !portland.checked) 
+  //if(!newyork.checked && !sanfrancisco.checked && !seattle.checked && !chicago.checked && !boston.checked && !portland.checked) 
+  if(location == null)
   {
     errors.push("villes")
   }
+  if(!nombreTournois.match(/^([0-9]+)/)) {
+    errors.push("sélectionner nombre")
+    console.log("OK")
+  }
+  if(!email.match(emailRegex)){
+    errors.push("email")
+    console.log("compléter mail")
+  }
   
-  if(!conditions.checked == true)
+  if(!conditions.checked)
   {
     errors.push("conditions")
   }
@@ -68,7 +89,16 @@ modalSubmitButton.addEventListener("click", function(){
   if(errors != [])
   {
     // si j'ai des erreurs
+    console.log("Affichage des erreurs")
     console.log(errors)
+    if(errors.includes("prenom"))
+    {
+      document.getElementById('erreurPrenom').innerHTML = "Veuillez entrer un prénom !"
+    }
+    if(errors.includes("nom"))
+    {
+      document.getElementById('erreurNom').innerHTML = "Veuillez entrer un nom !"
+    }
   }
   else
   {
