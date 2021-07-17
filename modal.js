@@ -31,27 +31,28 @@ function closeModal(){
 
 // vérification formulaire
 const modalSubmitButton = document.querySelector("#modalSubmit");
-modalSubmitButton.addEventListener("click", function(){
+modalSubmitButton.addEventListener("click", function(e){
+  e.preventDefault()
   console.log("Début")
   const prenomSelector = document.querySelector("#first")
   const nomSelector = document.querySelector("#last")
-  /*const newyork = document.querySelector("#location1")
-  const sanfrancisco = document.querySelector("#location2")
-  const seattle = document.querySelector("#location3")
-  const chicago = document.querySelector("#location4")
-  const boston = document.querySelector("#location5")
-  const portland = document.querySelector("#location6")
-  const conditions = document.getElementsByName("conditions")*/
   const locationSelector = document.querySelector("input[name='location']");
   const location = document.querySelector("input[name='location']:checked");
-  const conditions = document.querySelector("input[name='conditions']");
-  const nombreTournois = document.querySelector("input[name='quantity']").value;
-
   const emailRegex = /^(([^<>()\[\]\.,;:\s@"]+(\.[^<>()\[\]\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   const email = document.querySelector("input[name='email']").value;
+  const birthdate = document.querySelector("input[name='birthdate']").value;
+  const nombreTournois = document.querySelector("input[name='quantity']").value;
+  const conditions = document.querySelector("input[name='conditions']");
   
   console.log("Remise à zéro des erreurs")
    document.getElementById('erreurPrenom').innerHTML = ""
+   document.getElementById('erreurNom').innerHTML = ""
+   document.getElementById('erreurMail').innerHTML = ""
+   document.getElementById('erreurBirthdate').innerHTML = ""
+   document.getElementById('erreurTournois').innerHTML = ""
+   document.getElementById('erreurVille').innerHTML = ""
+   document.getElementById('erreurConditions').innerHTML = ""
+
 
   let errors = []
 
@@ -69,8 +70,12 @@ modalSubmitButton.addEventListener("click", function(){
   {
     errors.push("villes")
   }
+  if(!birthdate.match(/^[0-9]{4}\-[0-9]{1,2}\-[0-9]{1,2}$/)){
+    errors.push("birthdate")
+    console.log("date de naissance")
+  }
   if(!nombreTournois.match(/^([0-9]+)/)) {
-    errors.push("sélectionner nombre")
+    errors.push("tournois")
     console.log("OK")
   }
   if(!email.match(emailRegex)){
@@ -86,7 +91,7 @@ modalSubmitButton.addEventListener("click", function(){
 
 
 
-  if(errors != [])
+  if(errors.length > 0)
   {
     // si j'ai des erreurs
     console.log("Affichage des erreurs")
@@ -99,10 +104,42 @@ modalSubmitButton.addEventListener("click", function(){
     {
       document.getElementById('erreurNom').innerHTML = "Veuillez entrer un nom !"
     }
+    if(errors.includes("email"))
+    {
+      document.getElementById('erreurMail').innerHTML = "Veuillez saisir une adresse mail !"
+    }
+    if(errors.includes("birthdate"))
+    {
+      document.getElementById('erreurBirthdate').innerHTML = "Veuillez entrer votre date de naissance !"
+    }
+    if(errors.includes("tournois"))
+    {
+      document.getElementById('erreurTournois').innerHTML = "Veuillez saisir au moins une valeur !"
+    }
+    if(errors.includes("villes"))
+    {
+      document.getElementById('erreurVille').innerHTML = "Veuillez choisir une option !"
+    }
+    if(errors.includes("conditions"))
+    {
+      document.getElementById('erreurConditions').innerHTML = "Veuillez accepter les termes et conditions !"
+    }
   }
   else
   {
     // si je n'ai pas d'erreurs
+    console.log("PAS D'ERREUR")
+    const modalBody = document.querySelector(".modal-body")
+    const formulaire = document.querySelector(".formulaire")
+    const success = document.createElement("div")
+    success.setAttribute("class", "success")
+    success.innerHTML = "Merci pour votre inscription<button class='btn-submit button'>Fermer</button>"
+    modalBody.removeChild(formulaire)
+    modalBody.appendChild(success)
+
+    const closeSuccess = document.querySelector(".success")
+    closeSuccess.addEventListener("click", closeModal);
+    !e.preventDefault()
   }
 })
 
