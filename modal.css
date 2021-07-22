@@ -489,9 +489,10 @@ footer {
 }
 
 .success {
-  height: 100vh;
+  height: 90vh;
   text-align: center;
   padding-top: 240px;
+  font-size: 31px;
 }
 .fermer {
   margin-top: 220px;
@@ -507,7 +508,7 @@ footer {
     background: #fff;
     color: #000;
     padding: 0px;
-    width: 354px;
+    /*width: 354px;*/
   }
   .hero-content::after {
     content: unset;
@@ -520,10 +521,10 @@ footer {
     white-space: normal;
   }
   .hero-text {
-    /* width: unset; */
+    width: unset;
     /* font-size: 1.5rem; */
-    width: 354px;
-    font-size: 13px;
+    /*width: 354px;*/
+    font-size: 15px;
   }
   .hero-img img {
     border-radius: 10px;
@@ -547,6 +548,12 @@ footer {
     left: 80px;
     right: 80px;
     bottom: 46px;
+  }
+}
+
+@media screen and (max-width: 599px) {
+  .hero-text {
+    width: 322px;
   }
 }
 

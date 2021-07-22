@@ -145,7 +145,7 @@ modalSubmitButton.addEventListener("click", function(e){
       modalBody.appendChild(formulaire)
       document.querySelector(".formulaire").submit();
       modalbg.style.display = "none";
-      
+      e.stopPropagation();
     }
     
   }
