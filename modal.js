@@ -43,6 +43,7 @@ modalSubmitButton.addEventListener("click", function(e){
   const birthdate = document.querySelector("input[name='birthdate']").value;
   const nombreTournois = document.querySelector("input[name='quantity']").value;
   const conditions = document.querySelector("input[name='conditions']");
+  const formulaire = document.querySelector(".formulaire");
   
   console.log("Remise à zéro des erreurs")
    document.getElementById('erreurPrenom').innerHTML = ""
@@ -130,16 +131,23 @@ modalSubmitButton.addEventListener("click", function(e){
     // si je n'ai pas d'erreurs
     console.log("PAS D'ERREUR")
     const modalBody = document.querySelector(".modal-body")
-    const formulaire = document.querySelector(".formulaire")
     const success = document.createElement("div")
     success.setAttribute("class", "success")
-    success.innerHTML = "Merci pour votre inscription<button class='btn-submit button'>Fermer</button>"
+    success.innerHTML = "Merci pour votre inscription<button class='btn-submit button fermer'>Fermer</button>"
     modalBody.removeChild(formulaire)
     modalBody.appendChild(success)
-
+    
     const closeSuccess = document.querySelector(".success")
-    closeSuccess.addEventListener("click", closeModal);
-    !e.preventDefault()
+    closeSuccess.addEventListener("click", fermerAfterSuccess);
+    
+    function fermerAfterSuccess() {
+      modalBody.removeChild(success)
+      modalBody.appendChild(formulaire)
+      document.querySelector(".formulaire").submit();
+      modalbg.style.display = "none";
+      
+    }
+    
   }
 })
 

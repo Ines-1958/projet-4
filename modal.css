@@ -489,7 +489,13 @@ footer {
 }
 
 .success {
-  height: 100px;
+  height: 100vh;
+  text-align: center;
+  padding-top: 240px;
+}
+.fermer {
+  margin-top: 220px;
+  padding: 12px 82px;
 }
 
 @media screen and (max-width: 800px) {
@@ -531,6 +537,16 @@ footer {
   .copyrights {
     margin-top: 50px;
     text-align: center;
+  }
+
+  .success {
+    padding-top: 240px;
+  }
+  .fermer {
+    position: absolute;
+    left: 80px;
+    right: 80px;
+    bottom: 46px;
   }
 }
 
