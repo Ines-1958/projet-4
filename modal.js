@@ -33,7 +33,7 @@ function closeModal(){
 const modalSubmitButton = document.querySelector("#modalSubmit");
 modalSubmitButton.addEventListener("click", function(e){
   e.preventDefault()
-  console.log("Début")
+  //Début
   const prenomSelector = document.querySelector("#first")
   const nomSelector = document.querySelector("#last")
   const locationSelector = document.querySelector("input[name='location']");
@@ -45,7 +45,7 @@ modalSubmitButton.addEventListener("click", function(e){
   const conditions = document.querySelector("input[name='conditions']");
   const formulaire = document.querySelector(".formulaire");
   
-  console.log("Remise à zéro des erreurs")
+  //Remise à zéro des erreurs
    document.getElementById('erreurPrenom').innerHTML = ""
    document.getElementById('erreurNom').innerHTML = ""
    document.getElementById('erreurMail').innerHTML = ""
@@ -57,7 +57,7 @@ modalSubmitButton.addEventListener("click", function(e){
 
   let errors = []
 
-  console.log("Vérification des erreurs")
+  //Vérification des erreurs
   if(prenomSelector.value.length < 2)
   {
     errors.push("prenom")
@@ -73,15 +73,15 @@ modalSubmitButton.addEventListener("click", function(e){
   }
   if(!birthdate.match(/^[0-9]{4}\-[0-9]{1,2}\-[0-9]{1,2}$/)){
     errors.push("birthdate")
-    console.log("date de naissance")
+    
   }
   if(!nombreTournois.match(/^([0-9]+)/)) {
     errors.push("tournois")
-    console.log("OK")
+    
   }
   if(!email.match(emailRegex)){
     errors.push("email")
-    console.log("compléter mail")
+    
   }
   
   if(!conditions.checked)
@@ -95,8 +95,8 @@ modalSubmitButton.addEventListener("click", function(e){
   if(errors.length > 0)
   {
     // si j'ai des erreurs
-    console.log("Affichage des erreurs")
-    console.log(errors)
+    //Affichage des erreurs 
+    
     if(errors.includes("prenom"))
     {
       document.getElementById('erreurPrenom').innerHTML = "Veuillez entrer un prénom !"
@@ -129,7 +129,7 @@ modalSubmitButton.addEventListener("click", function(e){
   else
   {
     // si je n'ai pas d'erreurs
-    console.log("PAS D'ERREUR")
+    //PAS D'ERREUR  
     const modalBody = document.querySelector(".modal-body")
     const success = document.createElement("div")
     success.setAttribute("class", "success")
@@ -141,11 +141,12 @@ modalSubmitButton.addEventListener("click", function(e){
     closeSuccess.addEventListener("click", fermerAfterSuccess);
     
     function fermerAfterSuccess() {
-      modalBody.removeChild(success)
-      modalBody.appendChild(formulaire)
-      document.querySelector(".formulaire").submit();
       modalbg.style.display = "none";
-      e.stopPropagation();
+      /* modalBody.removeChild(success)
+      const modalBody = document.querySelector(".modal-body")
+      modalBody.appendChild(formulaire)
+      document.querySelector(".formulaire").submit();*/
+      
     }
     
   }
