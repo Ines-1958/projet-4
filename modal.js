@@ -65,25 +65,20 @@ modalSubmitButton.addEventListener("click", function(e){
   if(nomSelector.value.length < 2)
   {
     errors.push("nom")
-  }
-  //if(!newyork.checked && !sanfrancisco.checked && !seattle.checked && !chicago.checked && !boston.checked && !portland.checked) 
+  } 
   if(location == null)
   {
     errors.push("villes")
   }
   if(!birthdate.match(/^[0-9]{4}\-[0-9]{1,2}\-[0-9]{1,2}$/)){
-    errors.push("birthdate")
-    
+    errors.push("birthdate")  
   }
   if(!nombreTournois.match(/^([0-9]+)/)) {
-    errors.push("tournois")
-    
+    errors.push("tournois")  
   }
   if(!email.match(emailRegex)){
-    errors.push("email")
-    
+    errors.push("email")  
   }
-  
   if(!conditions.checked)
   {
     errors.push("conditions")
@@ -115,7 +110,7 @@ modalSubmitButton.addEventListener("click", function(e){
     }
     if(errors.includes("tournois"))
     {
-      document.getElementById('erreurTournois').innerHTML = "Veuillez saisir au moins une valeur !"
+      document.getElementById('erreurTournois').innerHTML = "Veuillez saisir au moins une valeur numérique!"
     }
     if(errors.includes("villes"))
     {
@@ -129,7 +124,7 @@ modalSubmitButton.addEventListener("click", function(e){
   else
   {
     // si je n'ai pas d'erreurs
-    //PAS D'ERREUR  
+    //PAS D'ERREURS
     const modalBody = document.querySelector(".modal-body")
     const success = document.createElement("div")
     success.setAttribute("class", "success")
@@ -141,12 +136,7 @@ modalSubmitButton.addEventListener("click", function(e){
     closeSuccess.addEventListener("click", fermerAfterSuccess);
     
     function fermerAfterSuccess() {
-      modalbg.style.display = "none";
-      /* modalBody.removeChild(success)
-      const modalBody = document.querySelector(".modal-body")
-      modalBody.appendChild(formulaire)
-      document.querySelector(".formulaire").submit();*/
-      
+      modalbg.style.display = "none"; 
     }
     
   }
