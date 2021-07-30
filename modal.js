@@ -34,8 +34,8 @@ const modalSubmitButton = document.querySelector("#modalSubmit");
 modalSubmitButton.addEventListener("click", function(e){
   e.preventDefault()
   //Début
-  const prenomSelector = document.querySelector("#first")
-  const nomSelector = document.querySelector("#last")
+  const prenomSelector = document.querySelector("input[name='first']").value;
+  const nomSelector = document.querySelector("input[name='last']").value;
   const locationSelector = document.querySelector("input[name='location']");
   const location = document.querySelector("input[name='location']:checked");
   const emailRegex = /^(([^<>()\[\]\.,;:\s@"]+(\.[^<>()\[\]\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -58,11 +58,11 @@ modalSubmitButton.addEventListener("click", function(e){
   let errors = []
 
   //Vérification des erreurs
-  if(prenomSelector.value.length < 2)
+  if(!prenomSelector.match(/^[a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ'._-\s]{2,30}$/))
   {
     errors.push("prenom")
   }
-  if(nomSelector.value.length < 2)
+  if(!nomSelector.match(/^[a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ'._-\s]{2,30}$/))
   {
     errors.push("nom")
   } 
