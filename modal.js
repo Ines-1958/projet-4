@@ -35,6 +35,7 @@ modalSubmitButton.addEventListener("click", function(e){
   e.preventDefault()
   //Début
   const prenomSelector = document.querySelector("input[name='first']").value;
+  //prenomSelector = prenomSelector.replace(" ").trim();
   const nomSelector = document.querySelector("input[name='last']").value;
   const locationSelector = document.querySelector("input[name='location']");
   const location = document.querySelector("input[name='location']:checked");
@@ -58,11 +59,11 @@ modalSubmitButton.addEventListener("click", function(e){
   let errors = []
 
   //Vérification des erreurs
-  if(!prenomSelector.match(/^[a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ'._-\s]{2,30}$/))
+  if(!prenomSelector.match(/^[a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ]([' _-]?[a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ]){2,30}$/))
   {
     errors.push("prenom")
   }
-  if(!nomSelector.match(/^[a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ'._-\s]{2,30}$/))
+  if(!nomSelector.match(/^[a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ]([' _-]?[a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ]){2,30}$/))
   {
     errors.push("nom")
   } 
